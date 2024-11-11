@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div style="display: flex;">
+            <div class="loader">
+                <div class="pac-man"></div>
+                <div class="point p1"></div>
+                <div class="point p2"></div>
+            </div>
+            <div style="margin-left: 500px; font-family: Arial, Helvetica, sans-serif;
+            font-size: larger;">
+                <h1>
+                    <%= message %>
+                </h1>
+            </div>
+        </div>
+
+        <!-- To-Do List Section -->
+        <div class="todo-container">
+            <h2 class="todo-title">To-Do List</h2>
+            <form action="/todo/add" method="POST" class="todo-form">
+                <input type="text" name="task" placeholder="Enter a task" class="todo-input" required>
+                <button type="submit" class="todo-add-btn">Add Task</button>
+            </form>
+
+            <ul class="todo-list">
+                <% tasks.forEach(function(task) { %>
+                    <li class="todo-item">
+                        <span class="todo-task">
+                            <%= task %>
+                        </span>
+                        <form action="/todo/delete" method="POST" class="todo-delete-form">
+                            <input type="hidden" name="taskToDelete" value="<%= task %>">
+                            <button type="submit" class="todo-delete-btn">Delete</button>
+                        </form>
+                    </li>
+                    <% }); %>
+            </ul>
+        </div>
+
+        <div class="button-container" style="margin-left: 750px; margin-top: 11px;">
+            <a href="/products" style="text-decoration: none;">
+                <button>
+                    <p>Product</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="4">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </button>
+            </a>
+        </div>        
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,316 @@
+PS C:\Users\CHARU\Desktop\mern-stack\learning\backend\Mongo-db> use employees
+use : The term 'use' is not recognized as the name of a cmdlet, 
+function, script file, or operable program. Check the spelling 
+of the name, or if a path was included, verify that the path is 
+correct and try again.
+At line:1 char:1
++ use employees
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (use:String) [],  
+   CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+PS C:\Users\CHARU\Desktop\mern-stack\learning\backend\Mongo-db> mongosh
+Current Mongosh Log ID: 672b240548b226344b0d818f
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.3      
+Using MongoDB:          8.0.3
+Using Mongosh:          2.3.3
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting      
+   2024-11-04T14:44:08.967+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> use employees
+switched to db employees
+employees> db.employees.insertMany({
+... {name : "Alice" , age:35,experience:6,department:"Engineering
+"},
+Uncaught:
+SyntaxError: Unexpected token (2:0)
+
+  1 | db.employees.insertMany({
+> 2 | {name : "Alice" , age:35,experience:6,department:"Engineering"},
+    | ^
+  3 |
+
+employees> db.employees.insertMany([ {name: "Alice" , age:35 , ex
+employees> db.employees.insertMany([ {name: "Alice" , age:35 , experience:6, department:"Engineering" },{name:"Bob" , age:28,experience:3,department:"Sales"},{name:"Charlie",age:40,experience:10,department:"HR"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('672b254b48b226344b0d8190'),
+    '1': ObjectId('672b254b48b226344b0d8191'),
+    '2': ObjectId('672b254b48b226344b0d8192')
+  }
+}
+employees> use products
+switched to db products
+products> db.products.insertMany([
+... {product_name: "Widget" , stock: 20 , price: 45 },
+... {product_name:"Gadget" , stock: 0 , price : 60},
+... {product_name: "Doodad" , stock: 15 ,price:30}
+... ])                                                           
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('672b25c748b226344b0d8193'),
+    '1': ObjectId('672b25c748b226344b0d8194'),
+    '2': ObjectId('672b25c748b226344b0d8195')
+  }
+}
+products> use students
+switched to db students
+students> db.students.insertMany([
+... {name : "Eve" , enrolled : true , grade: "B" },              
+... {name: "Frank" , enrolled : false , grade : "D"},            
+... {name: "Grace" , enrolled: true, 
+... grade:"C" },
+... ])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('672b265148b226344b0d8196'),
+    '1': ObjectId('672b265148b226344b0d8197'),
+    '2': ObjectId('672b265148b226344b0d8198')
+  }
+}
+students> use courses
+switched to db courses
+courses> db.courses.insertMany([
+... {course_name: "Math101" , duration: 4 , instructor:"JohnDoe"}
+,
+... {course_name: "History 201" , duration:8 , instructor:"Jane Smith"},
+... {course_name: "Science 301" , duration:6 }
+... ])                                                           
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('672b26c848b226344b0d8199'),
+    '1': ObjectId('672b26c848b226344b0d819a'),
+    '2': ObjectId('672b26c848b226344b0d819b')
+  }
+}
+courses> use orders
+switched to db orders
+orders> db.orders.insertMany([
+... {order_id: "A123", status:"shipped" , shipped_date: "2024-11-
+01" },
+... {order_id : "B456", status : "pending" },
+... {order_id: "c789" , status : "Shipped" }
+... ])                                                           
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('672b274048b226344b0d819c'),
+    '1': ObjectId('672b274048b226344b0d819d'),
+    '2': ObjectId('672b274048b226344b0d819e')
+  }
+}
+orders> use inventory
+switched to db inventory
+inventory> db.inventory.insertMany([
+... {item_name:"Laptop" , price : 999 , stock: 10},
+... {item_name:"Monitor" , price: 150 },
+... {item_name: "Mouse" , price: 20 , stock: 50 }
+... ])                                                           
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('672b27a548b226344b0d819f'),
+    '1': ObjectId('672b27a548b226344b0d81a0'),
+    '2': ObjectId('672b27a548b226344b0d81a1')
+  }
+}
+inventory> use employees
+switched to db employees
+employees> db.employees.find({
+... $or: [                                                       
+... { age : { $gt: 30 } },                                       
+... { experience : { $gt: 5 }}                                   
+... ]                                                            
+... })                                                           
+[
+  {
+    _id: ObjectId('672b254b48b226344b0d8190'),
+    name: 'Alice',
+    age: 35,
+    experience: 6,
+    department: 'Engineering'
+  },
+  {
+    _id: ObjectId('672b254b48b226344b0d8192'),
+    name: 'Charlie',
+    age: 40,
+    experience: 10,
+    department: 'HR'
+  }
+]
+employees> use products
+switched to db products
+products> db.products.find({
+... stock: { $gt: 0 },                                           
+... price: { $lt:  50}                                           
+... })                                                           
+[
+  {
+    _id: ObjectId('672b25c748b226344b0d8193'),
+    product_name: 'Widget',
+    stock: 20,
+    price: 45
+  },
+  {
+    _id: ObjectId('672b25c748b226344b0d8195'),
+    product_name: 'Doodad',
+    stock: 15,
+    price: 30
+  }
+]
+products> use students
+switched to db students
+students> db.students,find({
+... $or: [                                                       
+... { enrolled: false },
+... {grade : { $lt : "C" } }                                     
+... ]                                                            
+... })                                                           
+ReferenceError: find is not defined
+students> db.students.find({ $or: [ { enrolled: false }, { grade: { $lt: "C" } }] })
+[
+  {
+    _id: ObjectId('672b265148b226344b0d8196'),
+    name: 'Eve',
+    enrolled: true,
+    grade: 'B'
+  },
+  {
+    _id: ObjectId('672b265148b226344b0d8197'),
+    name: 'Frank',
+    enrolled: false,
+    grade: 'D'
+  }
+]
+students> use courses
+switched to db courses
+courses> db.courses.find({
+... $or : [                                                      
+... {duration : { $lt: 6 } },                                    
+... {instructor:{$exists: false }}
+... ]                                                            
+... })                                                           
+[
+  {
+    _id: ObjectId('672b26c848b226344b0d8199'),
+    course_name: 'Math101',
+    duration: 4,
+    instructor: 'JohnDoe'
+  },
+  {
+    _id: ObjectId('672b26c848b226344b0d819b'),
+    course_name: 'Science 301',
+    duration: 6
+  }
+]
+courses> use orders
+switched to db orders
+orders> db.orders.find({
+... $or: [                                                       
+... {status: {$ne : "shipped" }},
+... {shipped_date: { $exists: false }}
+...                                                              
+... ]                                                            
+... })                                                           
+[
+  {
+    _id: ObjectId('672b274048b226344b0d819d'),
+    order_id: 'B456',
+    status: 'pending'
+  },
+  {
+    _id: ObjectId('672b274048b226344b0d819e'),
+    order_id: 'c789',
+    status: 'Shipped'
+  }
+]
+orders> use employees
+switched to db employees
+employees> db.employees.find({
+... department: { $nin: ["Engineering" , "IT"] }},{
+... name: 1,                                                     
+... department: 1,                                               
+... _id:0                                                        
+... })                                                           
+[
+  { name: 'Bob', department: 'Sales' },
+  { name: 'Charlie', department: 'HR' }
+]
+employees> use students
+switched to db students
+students> db.students.find({
+... exam_score : { $lt: 50 },
+... participation : false 
+... })                                                           
+
+students> use employees
+switched to db employees
+employees> db.employees.find({
+... depatment: "Sales" ,                                         
+... $or : [
+... {experience : { $gt: 3 }},
+... { age : { $lt:25}}
+... ]                                                            
+... })                                                           
+
+employees> use inventory
+switched to db inventory
+inventory> db.inventory.find({
+... $or: [                                                       
+... {price:{$exits: true, $lt: 100 }},
+... { stock: { $exists: false }}
+... ]                                                            
+... })                                                           
+MongoServerError[BadValue]: unknown operator: $exits
+inventory> db.inventory.find({ $or: [ { price: { $exists: true, $lt: 100 } }, { stock: { $exists: false } }] })
+[
+  {
+    _id: ObjectId('672b27a548b226344b0d81a0'),
+    item_name: 'Monitor',
+    price: 150
+  },
+  {
+    _id: ObjectId('672b27a548b226344b0d81a1'),
+    item_name: 'Mouse',
+    price: 20,
+    stock: 50
+  }
+]
+inventory> use courses
+switched to db courses
+courses> db.courses.find({
+... $nor: [                                                      
+... {instructor : "John Smith" },                                
+... { duration : { $gt: 10 }}
+... ]                                                            
+... })                                                           
+[
+  {
+    _id: ObjectId('672b26c848b226344b0d8199'),
+    course_name: 'Math101',
+    duration: 4,
+    instructor: 'JohnDoe'
+  },
+  {
+    _id: ObjectId('672b26c848b226344b0d819a'),
+    course_name: 'History 201',
+    duration: 8,
+    instructor: 'Jane Smith'
+  },
+  {
+    _id: ObjectId('672b26c848b226344b0d819b'),
+    course_name: 'Science 301',
+    duration: 6
+  }
+]
+courses>

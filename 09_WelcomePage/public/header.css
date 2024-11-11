@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/* Style for the header */
+header {
+    background-color: #000000; /* Dark background */
+    color: white;           /* White text */
+    padding: 20px;          /* Space around content */
+    text-align: center;     /* Center the content */
+}
+
+/* Style for the navigation menu */
+nav ul {
+    list-style-type: none;  /* Remove bullets from list */
+    margin: 0;
+    padding: 0;
+    display: flex;          /* Display items in a row */
+    justify-content: center; /* Center the items */
+}
+
+nav ul li {
+    margin: 0 15px;         /* Space between menu items */
+}
+
+/* Style for the links */
+nav ul li a {
+    color: white;           /* White text */
+    text-decoration: none;  /* Remove underline from links */
+    font-size: 18px;        /* Font size */
+    padding: 10px 15px;     /* Padding inside the link */
+    border-radius: 5px;     /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth background transition */
+}
+
+/* Hover effect for links */
+nav ul li a:hover {
+    background-color: #555; /* Slightly lighter background on hover */
+}

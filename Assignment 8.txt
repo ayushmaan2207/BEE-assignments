@@ -1,0 +1,196 @@
+1. Basic Lookup with Matching Criteria
+javascript
+Copy code
+db.students.aggregate([
+  {
+    $lookup: {
+      from: "courses",
+      localField: "course_id",
+      foreignField: "_id",
+      as: "course_info"
+    }
+  },
+  {
+    $unwind: "$course_info"
+  },
+  {
+    $project: {
+      name: 1,
+      course_name: "$course_info.course_name"
+    }
+  }
+]);
+2. Filtering with Match
+javascript
+Copy code
+db.students.aggregate([
+  {
+    $match: {
+      score: { $gt: 75 }
+    }
+  }
+]);
+3. Lookup with Multiple Conditions
+javascript
+Copy code
+db.orders.aggregate([
+  {
+    $lookup: {
+      from: "customers",
+      localField: "customerId",
+      foreignField: "_id",
+      as: "customer_info"
+    }
+  },
+  {
+    $unwind: "$customer_info"
+  },
+  {
+    $match: {
+      amount: { $gt: 500 },
+      "customer_info.location": "New York"
+    }
+  }
+]);
+4. Multi-Stage Aggregation
+javascript
+Copy code
+db.sales.aggregate([
+  {
+    $lookup: {
+      from: "products",
+      localField: "productId",
+      foreignField: "_id",
+      as: "product_info"
+    }
+  },
+  {
+    $unwind: "$product_info"
+  },
+  {
+    $match: {
+      "product_info.price": { $gt: 20 }
+    }
+  },
+  {
+    $group: {
+      _id: "$productId",
+      total_revenue: {
+        $sum: { $multiply: ["$quantity", "$product_info.price"] }
+      }
+    }
+  }
+]);
+5. Using $in Operator
+javascript
+Copy code
+db.employees.aggregate([
+  {
+    $match: {
+      department: { $in: ["HR", "Engineering", "Marketing"] }
+    }
+  }
+]);
+6. Advanced Filtering with $or Operator
+javascript
+Copy code
+db.transactions.aggregate([
+  {
+    $match: {
+      $or: [
+        { type: "credit" },
+        { amount: { $gt: 1000 } }
+      ]
+    }
+  }
+]);
+7. Combining $lookup and $ne Operator
+javascript
+Copy code
+db.orders.aggregate([
+  {
+    $lookup: {
+      from: "customers",
+      localField: "customerId",
+      foreignField: "_id",
+      as: "customer_info"
+    }
+  },
+  {
+    $unwind: "$customer_info"
+  },
+  {
+    $match: {
+      "customer_info.membership": { $ne: "premium" }
+    }
+  }
+]);
+8. Multi-Level Lookup
+javascript
+Copy code
+db.students.aggregate([
+  {
+    $lookup: {
+      from: "courses",
+      localField: "courseId",
+      foreignField: "_id",
+      as: "course_info"
+    }
+  },
+  {
+    $unwind: "$course_info"
+  },
+  {
+    $lookup: {
+      from: "instructors",
+      localField: "course_info.instructorId",
+      foreignField: "_id",
+      as: "instructor_info"
+    }
+  },
+  {
+    $unwind: "$instructor_info"
+  },
+  {
+    $project: {
+      student_name: "$name",
+      course_name: "$course_info.course_name",
+      instructor_name: "$instructor_info.name"
+    }
+  }
+]);
+9. Conditional Lookup with $gte
+javascript
+Copy code
+db.purchases.aggregate([
+  {
+    $lookup: {
+      from: "customers",
+      localField: "customerId",
+      foreignField: "_id",
+      as: "customer_info"
+    }
+  },
+  {
+    $unwind: "$customer_info"
+  },
+  {
+    $match: {
+      "customer_info.loyaltyPoints": { $gte: 1000 }
+    }
+  }
+]);
+10. Using $and in a Complex Condition
+javascript
+Copy code
+db.products.aggregate([
+  {
+    $match: {
+      $and: [
+        { category: "electronics" },
+        { price: { $lt: 500 } },
+        { stock: { $gt: 10 } }
+      ]
+    }
+  }
+]);
