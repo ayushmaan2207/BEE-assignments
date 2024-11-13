@@ -1,0 +1,19 @@
+1) db.orders.aggregate([{ $match: { orderTotal: { $gt: 100 }, orderStatus: "shipped" } } ])
+
+2) db.products.aggregate([{ $group: { _id: "$category", total: { $sum: "$quantity" } } }])
+
+3) db.users.aggregate( [ {$lookup: {from:"packages" , localField:"userId" , foreignField:"userId" , as:"details"}  } ] )
+
+4) db.transactions.aggregate([ { $group: { _id: "$customerId", totalAmount: { $sum: "$value" } } }, { $sort: { totalAmount: -1 } } ])
+
+5) db.revenue.aggregate([{$match:{year:2023}} , {$group:{_id:null,totalValue:{$sum:"$value"}}}  ])
+
+6) db.department.aggregate([ {$match:{dept:"Sales"}} ,  {$lookup:{from:"employees",localField:"dept",foreignField:"department",as:"emps"}}])
+
+7) db.products.aggregate([{$group:{_id:{category: "$category", brand: "$brand"},totalSales:{$sum:"$value"}}  }, {$sort:{totalSales:1}} ])
+
+8) db.borrowRecords.aggregate([{$lookup:{from:"books",localField:"bookId",foreignField:"bookId",as:"bookDetails"}},{$unwind:"$bookDetails"},{$group:{_id:"$bookId",borrowCount:{$sum:1}}}])
+
+9) db.revenue.aggregate( [{$match:{tier:"VIP"}} , {$group:{_id:null,totalSales:{$sum:"$value"}}} ] )
+
+10) db.products.aggregate([{$group:{_id:"$prodID",avgRating:{$avg:"$rating"}}}])
