@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student</title>
+</head>
+<body>
+    <h1>Edit Student Details</h1>
+    <form action="/students/edit/<%= student._id %>" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="<%= student.name %>" required><br><br>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" value="<%= student.age %>" required><br><br>
+
+        <label for="grade">Grade:</label>
+        <input type="text" id="grade" name="grade" value="<%= student.grade %>" required><br><br>
+
+        <label for="courses">Courses (comma separated):</label>
+        <input type="text" id="courses" name="courses" value="<%= student.courses.join(', ') %>"><br><br>
+
+        <button type="submit">Update Student</button>
+    </form>
+    <a href="/students">Back to Student List</a>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students List</title>
+    <link rel="stylesheet" href="/public/main.css"> <!-- Updated link -->
+</head>
+<body>
+    <h1>Students List</h1>
+    <a href="/">Go Home</a>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Grade</th>
+            <th>Courses</th>
+            <th>Actions</th>
+        </tr>
+        <% students.forEach(student => { %>
+            <tr>
+                <td><%= student.name %></td>
+                <td><%= student.age %></td>
+                <td><%= student.grade %></td>
+                <td>
+                    <ul>
+                        <% student.courses.forEach(course => { %>
+                            <li><%= course.name %></li>
+                        <% }) %>
+                    </ul>
+                </td>
+                <td>
+                    <a href="/students/edit/<%= student._id %>">Edit</a>
+                    <form action="/students/delete/<%= student._id %>" method="POST" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        <% }) %>
+    </table>
+</body>
+</html>

@@ -1,0 +1,69 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Style */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5dc; /* Light beige background */
+    color: #333;               /* Dark text for readability */
+}
+
+/* Header Style */
+header {
+    background-color: #f5deb3; /* Beige background */
+    color: #333;               /* Darker text color for contrast */
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+/* Header Title */
+header h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #8b4513; /* SaddleBrown text color */
+}
+
+/* Navigation Menu */
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    color: #8b4513;                  /* SaddleBrown text color */
+    text-decoration: none;
+    font-size: 18px;
+    padding: 8px 16px;
+    margin: 0 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #deb887; /* BurlyWood hover background */
+    color: #333;               /* Darker hover text color */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 20px;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    nav a {
+        font-size: 16px;
+        margin: 5px 0;
+        padding: 10px;
+    }
+}

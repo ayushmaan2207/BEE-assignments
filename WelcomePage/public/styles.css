@@ -1,0 +1,306 @@
+/* From Uiverse.io by Ratinax */ 
+/* From Uiverse.io by ayman-ashine */ 
+*{
+    padding: 0;
+    margin: 0;
+}
+.container {
+    
+    width: 100vw;
+    height: 100vh;
+  }
+
+/* From Uiverse.io by Yaya12085 */ 
+.container {
+    /* Add your background pattern here */
+    background-image: linear-gradient(#ffffff 1.1rem, #ccc 1.2rem);
+    background-size: 100% 1.2rem;
+  }
+  
+.loader {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .pac-man {
+    width: 5em;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(farthest-side,#000 98%,#0000) 1.7em 0.61em/.8em .8em no-repeat,  
+      #ffcc00;
+    box-shadow: .2em -.6em 1.2em 0em inset rgba(0, 0, 0, 0.7);
+    animation: l4 .5s infinite steps(5) alternate;
+    z-index: 999;
+  }
+  
+  .point {
+    margin-top: 2em;
+    position: absolute;
+    margin-left: .4em;
+    width: 1em;
+    height: 1em;
+    background-color: #000;
+    border-radius: 50%;
+  }
+  
+  .p1 {
+    margin-left: 8em;
+    animation: moove-p1 2s linear infinite;
+  }
+  
+  .p2 {
+    margin-left: 15em;
+    animation: moove-p2 2s linear infinite;
+  }
+  
+  @keyframes moove-p1 {
+    0% {
+      margin-left: 8em;
+    }
+  
+    100% {
+      margin-left: 0em;
+    }
+  }
+  
+  @keyframes moove-p2 {
+    0% {
+      margin-left: 16em;
+    }
+  
+    100% {
+      margin-left: 8em;
+    }
+  }
+  
+  @keyframes l4 {
+   
+    0% {
+      clip-path: polygon(50% 50%,100% 0,100% 0,0 0,0 100%,100% 100%,100% 100%)
+    }
+  
+    100% {
+      clip-path: polygon(50% 50%,100% 65%,100% 0,0 0,0 100%,100% 100%,100%  35%)
+    }
+  }
+
+  /* To-Do List container styling */
+.todo-container {
+    margin-top: 30px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+}
+
+/* Title styling for To-Do List */
+.todo-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Styling for the form where tasks are added */
+.todo-form {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.todo-input {
+    padding: 10px;
+    width: 70%;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.todo-add-btn {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.todo-add-btn:hover {
+    background-color: #218838;
+}
+
+/* Styling for the list of tasks */
+.todo-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.todo-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Styling for individual task text */
+.todo-task {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Styling for the delete form (inline) */
+.todo-delete-form {
+    margin: 0;
+}
+
+/* Delete button styling */
+.todo-delete-btn {
+    background-color: #dc3545;
+    padding: 5px 10px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.todo-delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* From Uiverse.io by satyamchaudharydev */ 
+button {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  
+  button {
+    --primary-color: #111;
+    --hovered-color: #c84747;
+    position: relative;
+    display: flex;
+    font-weight: 600;
+    font-size: 20px;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  
+  button p {
+    margin: 0;
+    position: relative;
+    font-size: 20px;
+    color: var(--primary-color);
+  }
+  
+  button::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    left: 0;
+    bottom: -7px;
+    background: var(--hovered-color);
+    height: 2px;
+    transition: 0.3s ease-out;
+  }
+  
+  button p::before {
+    position: absolute;
+    /*   box-sizing: border-box; */
+    content: "Products";
+    width: 0%;
+    inset: 0;
+    color: var(--hovered-color);
+    overflow: hidden;
+    transition: 0.3s ease-out;
+  }
+  
+  button:hover::after {
+    width: 100%;
+  }
+  
+  button:hover p::before {
+    width: 100%;
+  }
+  
+  button:hover svg {
+    transform: translateX(4px);
+    color: var(--hovered-color);
+  }
+  
+  button svg {
+    color: var(--primary-color);
+    transition: 0.2s;
+    position: relative;
+    width: 15px;
+    transition-delay: 0.2s;
+  }
+  
+  /* From Uiverse.io by 0x-Sarthak */ 
+.cta {
+  position: relative;
+  margin: auto;
+  padding: 11.5px 18px;
+  transition: all 0.2s ease;
+  border: 3px solid #552da8;
+  border-radius: 50px;
+  background: #552da8;
+  cursor: pointer;
+}
+
+.cta:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  border-radius: 50px;
+  background: white;
+  width: 45px;
+  height: 45px;
+  transition: all 0.8s ease;
+}
+
+.cta span {
+  position: relative;
+  font-family: Montserrat;
+  font-size: 18px;
+  color: white;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+.cta svg {
+  position: relative;
+  top: 0;
+  margin-left: 10px;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: white;
+  stroke-width: 2;
+  transform: translateX(-5px);
+  transition: all 0.5s ease;
+}
+
+.cta:hover:before {
+  width: 100%;
+  background: #1c1c1c;
+}
+
+.cta:hover svg {
+  transform: translateX(0);
+  transition: all 2s ease;
+}
+
+.cta:active {
+  transform: scale(0.95);
+  transition: all 2s ease;
+}
